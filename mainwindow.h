@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QTextStream>
-#include "e32.h"
+#include "e34.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,7 +36,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSerialPort *comport;
-    e32 *modem;
+    e34 *modem;
 
     QByteArray rxData;
     uint16_t freqMHzBase, freqMHz;

@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     comport = new QSerialPort(this);
     connect(comport, SIGNAL(readyRead()), this, SLOT(readComData()));
-    modem = new e32;
+    modem = new e34;
 }
 
 MainWindow::~MainWindow()
@@ -102,7 +102,7 @@ void MainWindow::readComData()
             {
             case 0x32:
                 freqMHzBase = 410;
-                str.append("E32");
+                str.append("e34");
                 break;
             default:
                 break;
@@ -331,7 +331,7 @@ void MainWindow::on_savePresetButton_clicked()
         collectParam(params);
         par.clear();
         for (i=0; i<6; i++) par.append(params[i]);
-        out << par.toHex() << Qt::endl;
+        out << par.toHex() << endl;
     }
     else
     {

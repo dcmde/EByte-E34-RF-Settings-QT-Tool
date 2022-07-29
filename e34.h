@@ -1,5 +1,5 @@
-#ifndef E32_H
-#define E32_H
+#ifndef e34_H
+#define e34_H
 
 #define PARLEN 6
 
@@ -48,10 +48,10 @@
 #include <QMainWindow>
 #include <QObject>
 
-class e32
+class e34
 {
 public:
-    e32();
+    e34();
     uint8_t parameters[6];
     void setParity(uint8_t* paramArray, uint8_t parity);
     void setUartSpeed(uint8_t* paramArray, uint8_t speed);
@@ -77,4 +77,4 @@ private:
 
 };
 
-#endif // E32_H
+#endif // e34_H
