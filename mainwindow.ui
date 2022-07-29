@@ -251,39 +251,24 @@
      <number>-1</number>
     </property>
     <property name="maxVisibleItems">
-     <number>6</number>
+     <number>3</number>
     </property>
     <property name="maxCount">
-     <number>8</number>
+     <number>3</number>
     </property>
     <item>
      <property name="text">
-      <string>300</string>
+      <string>250k</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>1200</string>
+      <string>1M</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>2400</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4800</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>9600</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>19200</string>
+      <string>2M</string>
      </property>
     </item>
    </widget>

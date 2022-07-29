@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,7 +26,7 @@ void MainWindow::requestModel()
     char request[3];
     rxData.clear();
     comport->clear();
-    memset(request, 0xC3, 3);
+    memset(request, CMD_GET_VERSION, 3);
     comport->write(request, 3);
 //    comport->waitForReadyRead(20);
 }
@@ -35,7 +36,7 @@ void MainWindow::requestParam()
     char request[3];
     rxData.clear();
     comport->clear();
-    memset(request, 0xC1, 3);
+    memset(request, CMD_GET_PARAMS, 3);
     comport->write(request, 3);
 //    comport->waitForReadyRead(20);
 }
@@ -67,7 +68,7 @@ void MainWindow::collectParam(char* params)
 {
     uint16_t tmp16;
 
-    params[0] = 0xC0;
+    params[0] = PARAM_READ_HEADER;
     tmp16 = ui->lineEdit_2->text().toInt();
     params[1] = tmp16>>8;
     params[2] = tmp16&0x00FF;
@@ -95,7 +96,7 @@ void MainWindow::readComData()
     if (rxData.length()==4)
     {
         memcpy(tmp, rxData, 4);
-        if (tmp[0]==0xC3)
+        if (tmp[0]==VERSION_READ_HEADER)
         {
             str = "Model: ";
             switch (tmp[1])
@@ -127,11 +128,10 @@ void MainWindow::readComData()
     else if (rxData.length()==6)
     {
         memcpy(tmp, rxData, 6);
-        if (tmp[0]==0xC0)
+        if (tmp[0]==PARAM_READ_HEADER)
         {
             memcpy(params, tmp, 6);
             parseParam(params);
-            rxData.clear();
             editEnable();
             str = "Current Frequency is ";
             freqMHz = freqMHzBase + params[4];
@@ -139,6 +139,11 @@ void MainWindow::readComData()
             fs.setNum(freqMHz);
             str.append(fs);
             str.append(" MHz");
+            ui->textBrowser->append(str);
+            str = "Params : ";
+            D = rxData;
+            str.append(D.toHex());
+            rxData.clear();
             ui->textBrowser->append(str);
             if (paramSet) paramSet = false;
             else QMessageBox::information(0, "INFO", "Parameters are GOT!");
