@@ -1,8 +1,6 @@
 # EByte-e34-RF-Settings-QT-Tool
 
-This is a QT GUI tool to set up the Ebyte e34 radio modems.
-It was made like Original Windows tool
-but Crossplatform and English only (at this moment).
+All credits to https://github.com/billythehippo
 
 # QuickStart
 
@@ -17,6 +15,10 @@ For example: if you read from modem and save to file default config C0 00 00 1A 
 the config string in the file will look like C000001A1744 - just text without spaces.
 
 # BUILD and INSTALLATION
+
+Prerequisite :
+1. sudo apt-get install qt5-default
+2. sudo apt-get install libqt5serialport5-dev
 
 Classic:
 1. qmake
